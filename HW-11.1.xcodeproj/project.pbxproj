@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C4FFB662AF9103400066F67 /* UITextfield+ Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4FFB652AF9103400066F67 /* UITextfield+ Extensions.swift */; };
 		8CEA80552AF85FB700647BD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA80542AF85FB700647BD3 /* AppDelegate.swift */; };
 		8CEA80572AF85FB700647BD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA80562AF85FB700647BD3 /* SceneDelegate.swift */; };
 		8CEA80592AF85FB700647BD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA80582AF85FB700647BD3 /* ViewController.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C4FFB652AF9103400066F67 /* UITextfield+ Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield+ Extensions.swift"; sourceTree = "<group>"; };
 		8CEA80512AF85FB700647BD3 /* HW-11.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HW-11.1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEA80542AF85FB700647BD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CEA80562AF85FB700647BD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +37,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C4FFB642AF9100500066F67 /* UIKit+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8C4FFB652AF9103400066F67 /* UITextfield+ Extensions.swift */,
+			);
+			path = "UIKit+Extensions";
+			sourceTree = "<group>";
+		};
 		8CEA80482AF85FB700647BD3 = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +64,7 @@
 		8CEA80532AF85FB700647BD3 /* HW-11.1 */ = {
 			isa = PBXGroup;
 			children = (
+				8C4FFB642AF9100500066F67 /* UIKit+Extensions */,
 				8CEA80542AF85FB700647BD3 /* AppDelegate.swift */,
 				8CEA80562AF85FB700647BD3 /* SceneDelegate.swift */,
 				8CEA80582AF85FB700647BD3 /* ViewController.swift */,
@@ -176,6 +187,7 @@
 			files = (
 				8CEA80592AF85FB700647BD3 /* ViewController.swift in Sources */,
 				8CEA80552AF85FB700647BD3 /* AppDelegate.swift in Sources */,
+				8C4FFB662AF9103400066F67 /* UITextfield+ Extensions.swift in Sources */,
 				8CEA80572AF85FB700647BD3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
