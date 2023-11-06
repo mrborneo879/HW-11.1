@@ -3,13 +3,14 @@ import UIKit
 
 // Я переделал название ViewController на First Screen, так как, по сути, у нас будет 1 экран, final class взято из видео для ДЗ, лектор говорил, что это хорошо для оптимизации. Контроллер, как говорили в том же видео, не должен быть загруженным, поэтому я добавил расширения в дополнительный файл с расширениями.
 class FirstScreen: UIViewController {
-
+    
     // MARK: - UIElements/Oulets
     
     private lazy var imageView: UIImageView = {
         let image = UIImage(named: "backgroundImage")
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -51,14 +52,13 @@ class FirstScreen: UIViewController {
     }()
     
     private lazy var loginButton: UIButton = {
-        let logButton = UIButton(type: .system)
+        let logButton = UIButton()
         logButton.clipsToBounds = true
         logButton.backgroundColor = .systemIndigo
         logButton.setTitle("Login", for: .normal)
         logButton.setTitleColor(.white, for: .normal)
         logButton.layer.cornerRadius = 20
         logButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
-        logButton.translatesAutoresizingMaskIntoConstraints = false
         
         logButton.layer.shadowColor = UIColor.black.cgColor
         logButton.layer.shadowOpacity = 0.3
@@ -67,7 +67,6 @@ class FirstScreen: UIViewController {
         logButton.layer.shouldRasterize = true
         logButton.layer.rasterizationScale = UIScreen.main.scale
         logButton.translatesAutoresizingMaskIntoConstraints = false
-        
         return logButton
     }()
     
@@ -122,6 +121,46 @@ class FirstScreen: UIViewController {
         return stack
     }()
     
+    private lazy var facebookLoginButton: UIButton = {
+        let button = UIButton()
+        button.clipsToBounds = true
+        button.backgroundColor = .blue
+        button.setTitle("Facebook", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(facebookLoginButtonPressed), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "icons8-facebook"), for: .normal)
+        
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var twitterLoginButton: UIButton = {
+        let button = UIButton()
+        button.clipsToBounds = true
+        button.backgroundColor = .systemBlue
+        button.setTitle("Twitter", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(twitterLoginButtonPressed), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "icons8-twitter"), for: .normal)
+        
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -133,7 +172,7 @@ class FirstScreen: UIViewController {
     // MARK: - Setup
     
     private func setupHierarchy() {
-        [imageView, logLabel, logEntryTextfield, passwordEntryTextfield, loginButton, forgotPasswordButton, leftMargin, socialMediaConnectionLabel, rightMargin, socialMediaConnectionsStack].forEach {
+        [imageView, logLabel, logEntryTextfield, passwordEntryTextfield, loginButton, forgotPasswordButton, leftMargin, socialMediaConnectionLabel, rightMargin, socialMediaConnectionsStack, facebookLoginButton, twitterLoginButton].forEach {
             view.addSubview($0)
         }
     }
@@ -183,40 +222,63 @@ class FirstScreen: UIViewController {
         
         NSLayoutConstraint.activate([
             leftMargin.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -100),
-            leftMargin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150),
+            leftMargin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 170),
             leftMargin.heightAnchor.constraint(equalToConstant: 1),
             leftMargin.widthAnchor.constraint(equalToConstant: 80)
         ])
         
         NSLayoutConstraint.activate([
             socialMediaConnectionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            socialMediaConnectionLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150)
+            socialMediaConnectionLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 170)
         ])
         
         NSLayoutConstraint.activate([
             rightMargin.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
-            rightMargin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150),
+            rightMargin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 170),
             rightMargin.heightAnchor.constraint(equalToConstant: 1),
             rightMargin.widthAnchor.constraint(equalToConstant: 80)
         ])
-
+        
         NSLayoutConstraint.activate([
             socialMediaConnectionsStack.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            socialMediaConnectionsStack.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150)
+            socialMediaConnectionsStack.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 170)
         ])
-    
+        
+        NSLayoutConstraint.activate([
+            facebookLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -80),
+            facebookLoginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 215),
+            facebookLoginButton.heightAnchor.constraint(equalToConstant: 35),
+            facebookLoginButton.widthAnchor.constraint(equalToConstant: 145)
+        ])
+        
+        NSLayoutConstraint.activate([
+            twitterLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 80),
+            twitterLoginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 215),
+            twitterLoginButton.heightAnchor.constraint(equalToConstant: 35),
+            twitterLoginButton.widthAnchor.constraint(equalToConstant: 145)
+        ])
     }
     
     // MARK: - Actions
     
     @objc
     private func loginButtonPressed() {
-        print("Login button pressed, waiting for password button to be pressed.")
+        print("Login button pressed, waiting for Password button to be pressed.")
     }
     
     @objc
     private func forgotPasswordButtonPressed() {
-        print("Forgot password button pressed, waiting for new password button to be pressed.")
+        print("Forgot password button pressed, waiting for New password button to be pressed.")
+    }
+    
+    @objc
+    private func facebookLoginButtonPressed() {
+        print("Facebook login button pressed, waiting for Facebook password button to be pressed.")
+    }
+    
+    @objc
+    private func twitterLoginButtonPressed() {
+        print("Twitter login button pressed, waiting for Twitter password button to be pressed.")
     }
 
 }
