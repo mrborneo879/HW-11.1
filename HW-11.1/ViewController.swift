@@ -7,7 +7,7 @@ class FirstScreen: UIViewController {
     // MARK: - UIElements/Oulets
     
     private lazy var imageView: UIImageView = {
-        let image = UIImage(named: "BGimage")
+        let image = UIImage(named: "backgroundImage")
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
