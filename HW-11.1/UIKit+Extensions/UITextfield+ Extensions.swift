@@ -2,6 +2,8 @@
 import UIKit
 import Foundation
 
+// MARK: - Extensions
+
 extension UITextField {
     func setLeftIcon(_ image: UIImage) {
         let iconView = UIImageView(frame: CGRect(x: 20, y: 5, width: 20, height: 20))
