@@ -60,8 +60,48 @@
 				8CEA805D2AF85FB900647BD3 /* Assets.xcassets */,
 				8CEA805F2AF85FB900647BD3 /* LaunchScreen.storyboard */,
 				8CEA80622AF85FB900647BD3 /* Info.plist */,
+				8CEA80682AF8660100647BD3 /* Resources */,
+				8CEA80692AF8661200647BD3 /* Sources */,
 			);
 			path = "HW-11.1";
+			sourceTree = "<group>";
+		};
+		8CEA80682AF8660100647BD3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8CEA806C2AF8664D00647BD3 /* Configuration */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8CEA80692AF8661200647BD3 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8CEA806B2AF8663500647BD3 /* Storyboards */,
+				8CEA806A2AF8662A00647BD3 /* App */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8CEA806A2AF8662A00647BD3 /* App */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8CEA806B2AF8663500647BD3 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		8CEA806C2AF8664D00647BD3 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
