@@ -1,7 +1,7 @@
 
 import UIKit
 
-// Я переделал название ViewController на First Screen, так как, по сути, у нас будет 1 экран, final class взято из видео для ДЗ, лектор говорил, что это хорошо для оптимизации. Контроллер, как говорили в том же видео, не должен быть загруженным, поэтому я добавил расширения в дополнительный файл с расширениями.
+/* Я переделал название ViewController на First Screen, так как, по сути, у нас будет 1 экран, final class взято из видео для ДЗ, лектор говорил, что это хорошо для оптимизации. Контроллер, как говорили в том же видео, не должен быть загруженным, поэтому я добавил расширения в дополнительный файл с расширениями.*/
 class FirstScreen: UIViewController {
     
     // MARK: - UIElements/Oulets
@@ -52,7 +52,7 @@ class FirstScreen: UIViewController {
     }()
     
     private lazy var loginButton: UIButton = {
-        let logButton = UIButton()
+        let logButton = UIButton(type: .system)
         logButton.clipsToBounds = true
         logButton.backgroundColor = .systemIndigo
         logButton.setTitle("Login", for: .normal)
@@ -71,7 +71,7 @@ class FirstScreen: UIViewController {
     }()
     
     private lazy var forgotPasswordButton: UIButton = {
-        let helpButton = UIButton()
+        let helpButton = UIButton(type: .system)
         helpButton.clipsToBounds = true
         helpButton.backgroundColor = .none
         helpButton.setTitle("Forgot your password?", for: .normal)
@@ -122,7 +122,7 @@ class FirstScreen: UIViewController {
     }()
     
     private lazy var facebookLoginButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.clipsToBounds = true
         button.backgroundColor = .blue
         button.setTitle("Facebook", for: .normal)
@@ -142,7 +142,7 @@ class FirstScreen: UIViewController {
     }()
     
     private lazy var twitterLoginButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.clipsToBounds = true
         button.backgroundColor = .systemBlue
         button.setTitle("Twitter", for: .normal)
@@ -161,6 +161,42 @@ class FirstScreen: UIViewController {
         return button
     }()
     
+    private lazy var doNotHaveAccountQuestionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Don't have account?"
+        label.textColor = .systemGray
+        label.backgroundColor = .white
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textAlignment = .center
+        label.numberOfLines = 5
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var signUpButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.clipsToBounds = true
+        button.setTitle("Sign up", for: .normal)
+        button.setTitleColor(.systemIndigo, for: .normal)
+        button.backgroundColor = .none
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var signUpStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.distribution = .fillProportionally
+        stack.spacing = 20
+        stack.addArrangedSubview(doNotHaveAccountQuestionLabel)
+        stack.addArrangedSubview(signUpButton)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -172,7 +208,7 @@ class FirstScreen: UIViewController {
     // MARK: - Setup
     
     private func setupHierarchy() {
-        [imageView, logLabel, logEntryTextfield, passwordEntryTextfield, loginButton, forgotPasswordButton, leftMargin, socialMediaConnectionLabel, rightMargin, socialMediaConnectionsStack, facebookLoginButton, twitterLoginButton].forEach {
+        [imageView, logLabel, logEntryTextfield, passwordEntryTextfield, loginButton, forgotPasswordButton, leftMargin, socialMediaConnectionLabel, rightMargin, socialMediaConnectionsStack, facebookLoginButton, twitterLoginButton, doNotHaveAccountQuestionLabel, signUpButton, signUpStack].forEach {
             view.addSubview($0)
         }
     }
@@ -246,16 +282,33 @@ class FirstScreen: UIViewController {
         
         NSLayoutConstraint.activate([
             facebookLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -80),
-            facebookLoginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 215),
+            facebookLoginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 210),
             facebookLoginButton.heightAnchor.constraint(equalToConstant: 35),
-            facebookLoginButton.widthAnchor.constraint(equalToConstant: 145)
+            facebookLoginButton.widthAnchor.constraint(equalToConstant: 140)
         ])
         
         NSLayoutConstraint.activate([
             twitterLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 80),
-            twitterLoginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 215),
+            twitterLoginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 210),
             twitterLoginButton.heightAnchor.constraint(equalToConstant: 35),
-            twitterLoginButton.widthAnchor.constraint(equalToConstant: 145)
+            twitterLoginButton.widthAnchor.constraint(equalToConstant: 140)
+        ])
+        
+        NSLayoutConstraint.activate([
+            doNotHaveAccountQuestionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -40),
+            doNotHaveAccountQuestionLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 270),
+            doNotHaveAccountQuestionLabel.heightAnchor.constraint(equalToConstant: 35)
+        ])
+        
+        NSLayoutConstraint.activate([
+            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 80),
+            signUpButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 270),
+            signUpButton.heightAnchor.constraint(equalToConstant: 35)
+        ])
+        
+        NSLayoutConstraint.activate([
+            signUpStack.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            signUpStack.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 270)
         ])
     }
     
@@ -279,6 +332,11 @@ class FirstScreen: UIViewController {
     @objc
     private func twitterLoginButtonPressed() {
         print("Twitter login button pressed, waiting for Twitter password button to be pressed.")
+    }
+    
+    @objc
+    private func signUpButtonPressed() {
+        print("Sign up button pressed, loading ... ")
     }
 
 }
