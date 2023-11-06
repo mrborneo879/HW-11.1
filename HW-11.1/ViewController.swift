@@ -14,6 +14,17 @@ class FirstScreen: UIViewController {
         return imageView
     }()
     
+    private lazy var logLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Login"
+        label.textColor = .white
+        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        label.textAlignment = .center
+        label.numberOfLines = 5
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -25,7 +36,7 @@ class FirstScreen: UIViewController {
     // MARK: - Setup
     
     private func setupHierarchy() {
-        [imageView].forEach {
+        [imageView, logLabel].forEach {
             view.addSubview($0)
         }
     }
@@ -35,6 +46,11 @@ class FirstScreen: UIViewController {
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            logLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -300)
         ])
     }
     
