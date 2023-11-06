@@ -83,6 +83,45 @@ class FirstScreen: UIViewController {
         return helpButton
     }()
     
+    private lazy var leftMargin: UIView = {
+        let offset = UIView()
+        offset.backgroundColor = .systemGray
+        offset.layer.cornerRadius = 20
+        offset.translatesAutoresizingMaskIntoConstraints = false
+        return offset
+    }()
+    
+    private lazy var socialMediaConnectionLabel: UILabel = {
+        let connectLabel = UILabel()
+        connectLabel.text = "or connect with"
+        connectLabel.textColor = .systemGray
+        connectLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        connectLabel.textAlignment = .center
+        connectLabel.translatesAutoresizingMaskIntoConstraints = false
+        return connectLabel
+    }()
+    
+    private lazy var rightMargin: UIView = {
+        let offset = UIView()
+        offset.backgroundColor = .systemGray
+        offset.layer.cornerRadius = 20
+        offset.translatesAutoresizingMaskIntoConstraints = false
+        return offset
+    }()
+    
+    private lazy var socialMediaConnectionsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.distribution = .fillProportionally
+        stack.spacing = 20
+        stack.addArrangedSubview(leftMargin)
+        stack.addArrangedSubview(socialMediaConnectionLabel)
+        stack.addArrangedSubview(rightMargin)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -94,13 +133,12 @@ class FirstScreen: UIViewController {
     // MARK: - Setup
     
     private func setupHierarchy() {
-        [imageView, logLabel, logEntryTextfield, passwordEntryTextfield, loginButton, forgotPasswordButton].forEach {
+        [imageView, logLabel, logEntryTextfield, passwordEntryTextfield, loginButton, forgotPasswordButton, leftMargin, socialMediaConnectionLabel, rightMargin, socialMediaConnectionsStack].forEach {
             view.addSubview($0)
         }
     }
     
     private func setupLayout() {
-        
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -143,6 +181,30 @@ class FirstScreen: UIViewController {
             forgotPasswordButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
+        NSLayoutConstraint.activate([
+            leftMargin.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -100),
+            leftMargin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150),
+            leftMargin.heightAnchor.constraint(equalToConstant: 1),
+            leftMargin.widthAnchor.constraint(equalToConstant: 80)
+        ])
+        
+        NSLayoutConstraint.activate([
+            socialMediaConnectionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            socialMediaConnectionLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150)
+        ])
+        
+        NSLayoutConstraint.activate([
+            rightMargin.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
+            rightMargin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150),
+            rightMargin.heightAnchor.constraint(equalToConstant: 1),
+            rightMargin.widthAnchor.constraint(equalToConstant: 80)
+        ])
+
+        NSLayoutConstraint.activate([
+            socialMediaConnectionsStack.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            socialMediaConnectionsStack.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150)
+        ])
+    
     }
     
     // MARK: - Actions
